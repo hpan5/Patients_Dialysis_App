@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const routes = require('./routes')
+const routes = require("./routes");
 const mongooseUri = require('./private-data');
 const mongoose = require("mongoose")
 const cors = require('cors');
@@ -27,7 +27,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/patients', routes);
+app.use(routes);
 
 mongoose.connect(mongooseUri, {
     useUnifiedTopology: true,

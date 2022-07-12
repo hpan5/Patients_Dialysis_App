@@ -1,26 +1,40 @@
 const express = require("express");
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const patientModel = require("./models");
-const app = express();
+const router = express.Router();
 
-app.post("/add_patient", async (request, response) => {
-    const patient = new patientModel(request.body);
-  
-    try {
-      await patient.save();
-      response.send(patient);
-    } catch (error) {
-      response.status(500).send(error);
-    }
+router.post("/addPatient", bodyParser.urlencoded({ extended: false}), async (request, response) => {
+  if (!request.body.name) {
+    response.status(400).send({message: 'Patient name content cannot be empty!'});
+    return;
+  }
+  const patient = new patientModel({
+    _id: new mongoose.Types.ObjectId(),
+    name: request.body.name,
+    barcode: request.body.barcode,
+    filter_barcode: request.body.filter_barcode,
+    Scans: []
+  });
+  try {
+    await patient.save();
+    response.send(patient);
+  } catch (error) {
+    response.status(500).send(error);
+  }
 });
 
-app.get("/patients", async (request, response) => {
+router.get("/test", async (request, response) => {
+  response.send('Hello world');
+});
+router.get("/patients", async (request, response) => {
     const patients = await patientModel.find({});
-  
+    console.log("patients:", patients);
     try {
       response.send(patients);
     } catch (error) {
       response.status(500).send(error);
     }
-  });
+});
 
-  module.exports = app;
+  module.exports = router;

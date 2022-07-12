@@ -6,7 +6,7 @@ const ScanSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    nurse_name: {
+    scanner_name: {
         type: String,
     }
 });
@@ -16,12 +16,12 @@ const PatientSchema = new Schema({
     type: String,
     required: true,
   },
-  patient_barcode: {
-    type: Number,
+  barcode: {
+    type: String,
     default: 0,
   },
   filter_barcode: {
-    type: Number,
+    type: String,
     default: 0,
   },
   Scans: [ScanSchema],
