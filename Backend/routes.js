@@ -27,7 +27,8 @@ router.post("/addPatient", bodyParser.urlencoded({ extended: false}), async (req
 router.get("/test", async (request, response) => {
   response.send('Hello world');
 });
-router.get("/patients", async (request, response) => {
+
+router.get("/fetchPatients", async (request, response) => {
     const patients = await patientModel.find({});
     console.log("patients:", patients);
     try {

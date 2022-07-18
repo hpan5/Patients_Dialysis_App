@@ -5,7 +5,7 @@ const mongooseUri = require('./private-data');
 const mongoose = require("mongoose")
 const cors = require('cors');
 
-const PORT = 3000
+const PORT = 3001
 const app = new express();
 
 app.use("/photos/", express.static('photos'));
@@ -27,7 +27,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(routes);
+app.use('/patients', routes);
 
 mongoose.connect(mongooseUri, {
     useUnifiedTopology: true,
