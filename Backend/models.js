@@ -11,6 +11,14 @@ const ScanSchema = new Schema({
     }
 });
 
+const FilterSchema = new Schema({
+  barcode: {
+    type: String,
+    default: 0,
+  },
+  Scans: [ScanSchema]
+})
+
 const PatientSchema = new Schema({
   name: {
     type: String,
@@ -24,9 +32,10 @@ const PatientSchema = new Schema({
     type: String,
     default: 0,
   },
-  Scans: [ScanSchema],
+  Filter: { type: Schema.Types.ObjectId, ref: 'FilterModel' }
 });
 
-const Patient = mongoose.model("Patient", PatientSchema);
+const FilterModel = mongoose.model("Filter", FilterSchema);
+const PatientModel = mongoose.model("Patient", PatientSchema);
 
-module.exports = Patient;
+module.exports =  {PatientModel, FilterModel};
