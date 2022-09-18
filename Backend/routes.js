@@ -13,6 +13,7 @@ router.post("/addPatient", bodyParser.urlencoded({ extended: false}), async (req
     _id: new mongoose.Types.ObjectId(),
     name: request.body.name,
     barcode: request.body.barcode,
+    filter_id: request.bodat.filter_id,
     filter_barcode: request.body.filter_barcode,
     Scans: []
   });
@@ -38,4 +39,12 @@ router.get("/fetchPatients", async (request, response) => {
     }
 });
 
+router.delete("/deleteAll", async (req, res) => {
+  try {
+      await PatientModel.deleteMany({});
+      res.send("successfully deleted all the patients");
+  } catch (err) {
+      res.status(404).send({message : "didn't delete all the patients successfully"});
+  }
+})
   module.exports = router;

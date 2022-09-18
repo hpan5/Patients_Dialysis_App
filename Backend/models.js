@@ -20,6 +20,7 @@ const PatientSchema = new Schema({
     type: String,
     default: 0,
   },
+  filter_id: string,
   filter_barcode: {
     type: String,
     default: 0,
