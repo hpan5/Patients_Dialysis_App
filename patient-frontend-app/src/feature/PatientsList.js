@@ -20,10 +20,6 @@ const PatientsList = () => {
   if (patientStatus === 'loading') {
     content = <h1>Loading</h1>
   } else if (patientStatus === 'succeeded') {
-    // Sort posts in reverse chronological order by datetime string
-    /*const orderedPatients = posts
-      .slice()
-      .sort((a, b) => b.date.localeCompare(a.date))*/
 
     content = patients.map((patient) => (
       //<div key={post.id} post={post} />
