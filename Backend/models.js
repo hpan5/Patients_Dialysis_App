@@ -6,9 +6,13 @@ const ScanSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    scanner_name: {
-        type: String,
-    }
+    patient_name: String
+});
+
+const FilterSchema = new Schema({
+  barcode: String,
+  patient_id: String,
+  closed_date: Date
 });
 
 const PatientSchema = new Schema({
@@ -16,18 +20,13 @@ const PatientSchema = new Schema({
     type: String,
     required: true,
   },
-  barcode: {
-    type: String,
-    default: 0,
-  },
-  filter_id: string,
-  filter_barcode: {
-    type: String,
-    default: 0,
-  },
+  barcode: String,
+  filter_barcode: String,
+  filter: { type: Schema.Types.ObjectId, ref: 'Filter' },
   Scans: [ScanSchema],
 });
 
-const Patient = mongoose.model("Patient", PatientSchema);
 
-module.exports = Patient;
+const FilterModel = mongoose.model("Filter", FilterSchema);
+const patientModel = mongoose.model("Patient", PatientSchema);
+module.exports = { patientModel, FilterModel };
