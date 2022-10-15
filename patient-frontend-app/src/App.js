@@ -5,20 +5,20 @@ import {
   Route,
 } from 'react-router-dom'
 import './App.css';
-import PatientsList from './feature/PatientsList';
+import PatientsTable from './feature/PatientsTable';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <PatientsList />
+        <PatientsTable />
         <Routes>
           <Route
             exact
             path="/"
             render={() => (
               <React.Fragment>
-                <PatientsList />
+                <PatientsTable />
               </React.Fragment>
             )}
           />
