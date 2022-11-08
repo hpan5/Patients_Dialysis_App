@@ -7,8 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllPatients, fetchPatients } from './patientsSlice';
+import { borderRight } from '@mui/system';
+
 
 const columns = [
   { id: 'name', label: 'Name', minWidth: 170, align: "center" },
@@ -47,7 +50,7 @@ const PatientsTable = () => {
   if (patientStatus === 'loading') {
     content = <h1>Loading</h1>
   } else if (patientStatus === 'succeeded') {
-    console.log("patients:", patients);
+    //console.log("patients:", patients);
     content = (
       <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
@@ -95,8 +98,6 @@ const PatientsTable = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      //<div key={post.id} post={post} />
-      //<p key={patient.id}>{patient.name}</p>
     )
   } else if (patientStatus === 'failed') {
     content = <div>{error}</div>
@@ -104,7 +105,6 @@ const PatientsTable = () => {
 
   return (
     <section className="posts-list">
-      <h2>Patients</h2>
       {content}
     </section>
   )

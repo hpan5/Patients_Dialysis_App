@@ -5,12 +5,15 @@ import {
   Route,
 } from 'react-router-dom'
 import './App.css';
+import NavBar from './app/NavBar';
 import PatientsTable from './feature/PatientsTable';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <h2>Patients Dialysis App</h2>
+        <NavBar/>
         <PatientsTable />
         <Routes>
           <Route
